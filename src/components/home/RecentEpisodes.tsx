@@ -1,39 +1,50 @@
-import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
-import SectionHeading from '../ui/SectionHeading';
-import EpisodeCard from '../youtube/EpisodeCard';
-import Button from '../ui/Button';
+import { Link } from 'react-router';
 import { episodes } from '../../data/episodes';
+import Container from '../ui/Container';
+import Section from '../ui/Section';
+import SectionIntro from '../ui/SectionIntro';
+import Button from '../ui/Button';
+import EpisodeCard from '../youtube/EpisodeCard';
 
 export default function RecentEpisodes() {
-  // Skip the first (featured) episode, show next 6
-  const recentEps = episodes.slice(1, 7);
+  const featureShelf = episodes.slice(1, 2);
+  const recentEps = episodes.slice(2, 6);
 
   return (
-    <section id="recent-episodes" className="py-20 lg:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title="Recent Episodes"
-          subtitle="Catch up on the latest conversations from The Higher Life Podcast"
-        />
+    <Section tone="transparent" spacing="default" id="recent-episodes">
+      <Container size="wide">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <SectionIntro
+            eyebrow="Episode shelf"
+            title="Recent conversations worth catching up on."
+            copy="An editorial grid for latest releases, spotlight episodes, and shareable conversations from the archive."
+          />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {recentEps.map((ep, i) => (
-            <Link to={`/episodes?play=${ep.videoId}`} key={ep.id}>
-              <EpisodeCard episode={ep} index={i} />
-            </Link>
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
           <Link to="/episodes">
-            <Button variant="outline" size="lg">
-              View All Episodes
-              <ArrowRight className="w-5 h-5" />
+            <Button variant="ghost" size="md">
+              Browse all episodes
+              <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
         </div>
-      </div>
-    </section>
+
+        <div className="mt-12 space-y-6">
+          {featureShelf.map((episode, index) => (
+            <Link to={`/episodes?play=${episode.videoId}`} key={episode.id}>
+              <EpisodeCard episode={episode} index={index} variant="featured" />
+            </Link>
+          ))}
+
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {recentEps.map((episode, index) => (
+              <Link to={`/episodes?play=${episode.videoId}`} key={episode.id}>
+                <EpisodeCard episode={episode} index={index} variant="standard" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </Section>
   );
 }

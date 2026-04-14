@@ -1,13 +1,17 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, BookOpen } from 'lucide-react';
-import SectionHeading from '../components/ui/SectionHeading';
-import YouTubePlayer from '../components/youtube/YouTubePlayer';
-import EpisodeCard from '../components/youtube/EpisodeCard';
-import Button from '../components/ui/Button';
-import { episodes, categories } from '../data/episodes';
+import { AnimatePresence, motion } from 'framer-motion';
+import { BookOpen, Search, X } from 'lucide-react';
 import type { Episode } from '../types';
+import { categories, episodes } from '../data/episodes';
+import Button from '../components/ui/Button';
+import Container from '../components/ui/Container';
+import PageHero from '../components/ui/PageHero';
+import Section from '../components/ui/Section';
+import SectionIntro from '../components/ui/SectionIntro';
+import SurfaceCard from '../components/ui/SurfaceCard';
+import EpisodeCard from '../components/youtube/EpisodeCard';
+import YouTubePlayer from '../components/youtube/YouTubePlayer';
 
 export default function EpisodesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,23 +19,22 @@ export default function EpisodesPage() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedEpisode, setSelectedEpisode] = useState<Episode | null>(() => {
     const playId = searchParams.get('play');
-    if (playId) {
-      return episodes.find((ep) => ep.videoId === playId) || null;
-    }
-    return null;
+    return playId ? episodes.find((episode) => episode.videoId === playId) || null : null;
   });
 
-  const filteredEpisodes = useMemo(() => {
-    return episodes.filter((ep) => {
-      const matchSearch =
-        !search ||
-        ep.title.toLowerCase().includes(search.toLowerCase()) ||
-        ep.description.toLowerCase().includes(search.toLowerCase());
-      const matchCategory =
-        activeCategory === 'All' || ep.category === activeCategory;
-      return matchSearch && matchCategory;
-    });
-  }, [search, activeCategory]);
+  const filteredEpisodes = useMemo(
+    () =>
+      episodes.filter((episode) => {
+        const matchesSearch =
+          !search ||
+          episode.title.toLowerCase().includes(search.toLowerCase()) ||
+          episode.description.toLowerCase().includes(search.toLowerCase());
+        const matchesCategory =
+          activeCategory === 'All' || episode.category === activeCategory;
+        return matchesSearch && matchesCategory;
+      }),
+    [search, activeCategory]
+  );
 
   const handleEpisodeClick = (episode: Episode) => {
     setSelectedEpisode(episode);
@@ -45,156 +48,162 @@ export default function EpisodesPage() {
   };
 
   return (
-    <main id="episodes-page" className="pt-24 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Selected Episode Player */}
-        <AnimatePresence>
-          {selectedEpisode && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="mb-12"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <h1 className="font-heading text-2xl md:text-3xl font-bold text-dark">
-                  Now Playing
-                </h1>
-                <Button variant="ghost" size="sm" onClick={handleClosePlayer}>
-                  <X className="w-4 h-4" />
-                  Close
-                </Button>
-              </div>
+    <main id="episodes-page">
+      <PageHero
+        eyebrow="Episode library"
+        title="A cleaner archive for discovering, replaying, and sharing the message."
+        copy="The archive now carries the same editorial hierarchy as the homepage, with a featured player, improved filters, and a premium card system for every episode."
+      />
 
-              <div className="grid lg:grid-cols-5 gap-8">
-                <div className="lg:col-span-3">
-                  <YouTubePlayer
-                    videoId={selectedEpisode.videoId}
-                    title={selectedEpisode.title}
-                  />
-                </div>
-                <div className="lg:col-span-2">
-                  {selectedEpisode.category && (
-                    <span className="inline-block px-3 py-1 rounded-full bg-brand-teal/10 text-brand-teal-dark text-xs font-semibold mb-3">
-                      {selectedEpisode.category}
-                    </span>
-                  )}
-                  <h2 className="font-heading text-xl lg:text-2xl font-bold text-dark mb-3">
-                    {selectedEpisode.title}
-                  </h2>
-                  <p className="text-gray-500 leading-relaxed mb-6 text-sm">
-                    {selectedEpisode.description}
-                  </p>
-
-                  {/* Resources */}
-                  {selectedEpisode.resources &&
-                    selectedEpisode.resources.length > 0 && (
-                      <div className="p-4 bg-surface-ivory rounded-xl border border-gray-100">
-                        <h4 className="flex items-center gap-2 font-heading text-sm font-bold text-dark mb-3">
-                          <BookOpen className="w-4 h-4 text-brand-teal" />
-                          Episode Resources
-                        </h4>
-                        <ul className="space-y-2">
-                          {selectedEpisode.resources.map((r, i) => (
-                            <li
-                              key={i}
-                              className="flex items-center gap-2 text-sm text-gray-600"
-                            >
-                              <span className="w-1.5 h-1.5 rounded-full bg-brand-teal shrink-0" />
-                              {r.reference || r.title}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                </div>
-              </div>
-
-              <hr className="mt-12 border-gray-200" />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Header  */}
-        <div className="pt-4">
-          <SectionHeading
-            title="All Episodes"
-            subtitle={`${episodes.length} episodes of faith, growth, and purpose`}
-          />
-        </div>
-
-        {/* Search & Filters */}
-        <div className="flex flex-col md:flex-row gap-4 mb-10">
-          {/* Search */}
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              id="episode-search"
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search episodes..."
-              className="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 bg-white text-dark placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all duration-300"
-            />
-            {search && (
-              <button
-                onClick={() => setSearch('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+      <Section tone="paper" spacing="default">
+        <Container size="wide">
+          <AnimatePresence>
+            {selectedEpisode && (
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.35 }}
+                className="mb-10"
               >
-                <X className="w-4 h-4" />
-              </button>
+                <SurfaceCard tone="paper" padding="lg">
+                  <div className="flex flex-col gap-5 border-b border-ink-950/8 pb-6 md:flex-row md:items-end md:justify-between">
+                    <div>
+                      <span className="eyebrow">Now playing</span>
+                      <h2 className="mt-4 text-3xl text-ink-950 sm:text-4xl">
+                        {selectedEpisode.title}
+                      </h2>
+                    </div>
+                    <Button variant="ghost" size="sm" onClick={handleClosePlayer}>
+                      <X className="h-4 w-4" />
+                      Close player
+                    </Button>
+                  </div>
+
+                  <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
+                    <YouTubePlayer
+                      videoId={selectedEpisode.videoId}
+                      title={selectedEpisode.title}
+                    />
+
+                    <div>
+                      {selectedEpisode.category && (
+                        <span className="inline-flex rounded-full bg-gold-500/14 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-gold-700">
+                          {selectedEpisode.category}
+                        </span>
+                      )}
+                      <p className="mt-5 text-base leading-7 text-ink-600">
+                        {selectedEpisode.description}
+                      </p>
+
+                      {selectedEpisode.resources && selectedEpisode.resources.length > 0 && (
+                        <div className="mt-8 rounded-[1.25rem] border border-ink-950/8 bg-sand-50 p-5">
+                          <p className="inline-flex items-center gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-ink-500">
+                            <BookOpen className="h-4 w-4 text-gold-600" />
+                            Episode references
+                          </p>
+                          <ul className="mt-4 space-y-3">
+                            {selectedEpisode.resources.map((resource, index) => (
+                              <li
+                                key={index}
+                                className="flex items-start gap-3 text-sm leading-6 text-ink-600"
+                              >
+                                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-gold-500" />
+                                {resource.reference || resource.title}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </SurfaceCard>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.8fr)] lg:items-end">
+            <SectionIntro
+              eyebrow="Browse the library"
+              title="Search and filter without losing the premium feel."
+              copy={`${episodes.length} episodes of faith, growth, family, and purpose.`}
+            />
+
+            <SurfaceCard tone="warm" padding="md">
+              <div className="relative">
+                <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-500" />
+                <input
+                  id="episode-search"
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search by title or theme"
+                  className="min-h-13 w-full rounded-full border border-ink-950/10 bg-white pl-12 pr-12 text-base text-ink-950 placeholder:text-ink-500 focus:border-gold-500 focus:outline-none"
+                />
+                {search && (
+                  <button
+                    type="button"
+                    onClick={() => setSearch('')}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-ink-500 transition-colors duration-300 hover:text-ink-950"
+                    aria-label="Clear search"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => setActiveCategory(category)}
+                    className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition-colors duration-300 ${
+                      activeCategory === category
+                        ? 'bg-ink-950 text-white'
+                        : 'bg-white text-ink-600 hover:bg-ink-950/8 hover:text-ink-950'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </SurfaceCard>
+          </div>
+
+          <div className="mt-12">
+            {filteredEpisodes.length > 0 ? (
+              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {filteredEpisodes.map((episode, index) => (
+                  <EpisodeCard
+                    key={episode.id}
+                    episode={episode}
+                    index={index}
+                    onClick={handleEpisodeClick}
+                  />
+                ))}
+              </div>
+            ) : (
+              <SurfaceCard tone="paper" padding="lg" className="text-center">
+                <h3 className="text-3xl text-ink-950">No episodes match your filters.</h3>
+                <p className="mt-4 text-base leading-7 text-ink-600">
+                  Try clearing the search term or selecting a broader category.
+                </p>
+                <Button
+                  variant="ghost"
+                  className="mt-6"
+                  onClick={() => {
+                    setSearch('');
+                    setActiveCategory('All');
+                  }}
+                >
+                  Reset filters
+                </Button>
+              </SurfaceCard>
             )}
           </div>
-
-          {/* Category pills */}
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
-                  activeCategory === cat
-                    ? 'bg-brand-teal text-dark'
-                    : 'bg-gray-100 text-gray-600 hover:bg-brand-teal/10 hover:text-brand-teal-dark'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Episodes Grid */}
-        {filteredEpisodes.length > 0 ? (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {filteredEpisodes.map((ep, i) => (
-              <EpisodeCard
-                key={ep.id}
-                episode={ep}
-                index={i}
-                onClick={handleEpisodeClick}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-20">
-            <p className="text-gray-400 text-lg">
-              No episodes found matching your search.
-            </p>
-            <Button
-              variant="ghost"
-              className="mt-4"
-              onClick={() => {
-                setSearch('');
-                setActiveCategory('All');
-              }}
-            >
-              Clear Filters
-            </Button>
-          </div>
-        )}
-      </div>
+        </Container>
+      </Section>
     </main>
   );
 }

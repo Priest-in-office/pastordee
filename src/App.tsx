@@ -20,10 +20,10 @@ function ScrollToTop() {
 
 function AppLayout() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col">
       <ScrollToTop />
       <Navbar />
-      <div className="flex-1">
+      <div className="flex-1 pt-[5.5rem]">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/episodes" element={<EpisodesPage />} />

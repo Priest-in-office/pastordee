@@ -1,73 +1,62 @@
-import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router';
-import Button from '../ui/Button';
 import pastorDeola from '../../assets/pastordeola.webp';
+import Container from '../ui/Container';
+import Section from '../ui/Section';
+import SectionIntro from '../ui/SectionIntro';
+import Button from '../ui/Button';
+
+const hostPoints = [
+  'Practical biblical teaching rooted in spiritual maturity',
+  'Warm, intelligible guidance for faith, family, and purpose',
+  'A voice shaped for both the church audience and global listeners',
+];
 
 export default function AboutSnippet() {
   return (
-    <section id="about-snippet" className="py-20 lg:py-28 bg-surface-light">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+    <Section tone="paper" spacing="default" id="about-snippet">
+      <Container size="wide">
+        <div className="grid gap-10 lg:grid-cols-[minmax(320px,0.9fr)_minmax(0,1fr)] lg:items-center">
+          <div className="relative mx-auto max-w-[28rem]">
+            <div className="absolute -bottom-8 -left-8 hidden h-36 w-36 rounded-[2rem] border border-ink-950/10 bg-sand-100 lg:block" />
+            <div className="relative overflow-hidden rounded-[2rem] border border-ink-950/8 bg-white shadow-[var(--shadow-card)]">
               <img
                 src={pastorDeola}
                 alt="Pastor Deola Phillips"
-                className="w-full h-[500px] object-cover object-top"
+                className="aspect-[4/5] w-full object-cover object-top"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/30 to-transparent" />
             </div>
-            {/* Accent corner */}
-            <div className="absolute -bottom-4 -right-4 w-40 h-40 bg-brand-teal/10 rounded-2xl -z-10" />
-            <div className="absolute -top-4 -left-4 w-24 h-24 border-2 border-brand-teal/30 rounded-2xl" />
-          </motion.div>
+          </div>
 
-          {/* Text */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-brand-teal/10 text-brand-teal text-sm font-semibold mb-6">
-              About the Host
-            </span>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-dark mb-6">
-              Pastor Deola Phillips
-            </h2>
-            <div className="space-y-4 text-gray-600 leading-relaxed">
-              <p>
-                Pastor Deola Phillips is a dynamic minister of the Gospel, passionate about
-                helping people discover and walk in the higher life that God has called them to.
-                Through The Higher Life Podcast, she brings powerful, practical teachings that
-                transform lives across the globe.
-              </p>
-              <p>
-                With a unique gift for making deep spiritual truths relatable and actionable,
-                Pastor Deola empowers believers to live with excellence, purpose, and an
-                unshakeable faith in God's Word.
-              </p>
+          <div>
+            <SectionIntro
+              eyebrow="Meet the host"
+              title="Pastor Deola Phillips brings clarity, warmth, and conviction to every conversation."
+              copy="The site now treats her story like an editorial profile rather than a generic bio block, giving the ministry a stronger sense of credibility and presence."
+            />
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {hostPoints.map((point) => (
+                <div
+                  key={point}
+                  className="rounded-[1.25rem] border border-ink-950/8 bg-white px-5 py-5 text-sm leading-6 text-ink-600 shadow-[var(--shadow-soft)]"
+                >
+                  {point}
+                </div>
+              ))}
             </div>
 
             <div className="mt-8">
               <Link to="/about">
                 <Button variant="secondary" size="md">
-                  Read Full Bio
-                  <ArrowRight className="w-4 h-4" />
+                  Read Pastor Deola&apos;s Story
+                  <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

@@ -12,6 +12,26 @@ interface ButtonProps {
   id?: string;
 }
 
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-full border text-center font-semibold transition-all duration-300 focus-visible:outline-none';
+
+const variants: Record<NonNullable<ButtonProps['variant']>, string> = {
+  primary:
+    'border-gold-500 bg-gold-500 text-ink-950 hover:border-gold-400 hover:bg-gold-400',
+  secondary:
+    'border-ink-950 bg-ink-950 text-white hover:border-ink-800 hover:bg-ink-800',
+  outline:
+    'border-ink-950/15 bg-white/40 text-ink-950 hover:border-ink-950 hover:bg-white',
+  ghost:
+    'border-transparent bg-transparent text-ink-700 hover:bg-ink-950/6 hover:text-ink-950',
+};
+
+const sizes: Record<NonNullable<ButtonProps['size']>, string> = {
+  sm: 'min-h-10 px-4 text-sm',
+  md: 'min-h-11 px-5 text-sm sm:text-[0.95rem]',
+  lg: 'min-h-13 px-6 text-base',
+};
+
 export default function Button({
   children,
   variant = 'primary',
@@ -23,38 +43,34 @@ export default function Button({
   disabled = false,
   id,
 }: ButtonProps) {
-  const base =
-    'inline-flex items-center justify-center font-sans font-semibold rounded-lg transition-all duration-300 cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-teal';
-
-  const variants: Record<string, string> = {
-    primary:
-      'bg-brand-teal text-dark hover:bg-brand-teal-dark hover:shadow-lg hover:shadow-brand-teal/25 active:scale-[0.97]',
-    secondary:
-      'bg-dark text-white hover:bg-dark-secondary hover:shadow-lg active:scale-[0.97]',
-    outline:
-      'border-2 border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-dark active:scale-[0.97]',
-    ghost:
-      'text-gray-600 hover:text-brand-teal hover:bg-brand-teal/10 active:scale-[0.97]',
-  };
-
-  const sizes: Record<string, string> = {
-    sm: 'px-4 py-2 text-sm gap-1.5',
-    md: 'px-6 py-3 text-base gap-2',
-    lg: 'px-8 py-4 text-lg gap-2.5',
-  };
-
-  const classes = `${base} ${variants[variant]} ${sizes[size]} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`;
+  const classes = `${base} ${variants[variant]} ${sizes[size]} ${
+    disabled ? 'pointer-events-none opacity-50' : ''
+  } ${className}`;
 
   if (href) {
+    const external = href.startsWith('http');
+
     return (
-      <a href={href} className={classes} id={id} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+      <a
+        href={href}
+        className={classes}
+        id={id}
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noopener noreferrer' : undefined}
+      >
         {children}
       </a>
     );
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes} disabled={disabled} id={id}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={classes}
+      disabled={disabled}
+      id={id}
+    >
       {children}
     </button>
   );

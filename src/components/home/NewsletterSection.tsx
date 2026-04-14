@@ -1,41 +1,28 @@
-import { motion } from 'framer-motion';
-import { Mail } from 'lucide-react';
+import Container from '../ui/Container';
+import Section from '../ui/Section';
 import NewsletterForm from '../ui/NewsletterForm';
 
 export default function NewsletterSection() {
   return (
-    <section id="newsletter-section" className="py-20 lg:py-28 bg-white relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-teal via-brand-gold to-brand-teal" />
+    <Section tone="dark" spacing="default" className="site-grain overflow-hidden" id="newsletter-section">
+      <Container size="narrow" className="text-center">
+        <span className="eyebrow">Stay close to the message</span>
+        <h2 className="mt-4 text-4xl text-white sm:text-5xl">
+          Get new episodes, notes, and updates delivered with intention.
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
+          A premium newsletter treatment with better spacing, clearer hierarchy, and a
+          calmer call to action.
+        </p>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="w-16 h-16 rounded-2xl bg-brand-teal/10 flex items-center justify-center mx-auto mb-6">
-            <Mail className="w-7 h-7 text-brand-teal" />
-          </div>
+        <div className="mt-10 flex justify-center">
+          <NewsletterForm variant="inline" light />
+        </div>
 
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-dark mb-4">
-            Never Miss an Episode
-          </h2>
-          <p className="text-gray-500 text-lg mb-8 max-w-xl mx-auto">
-            Subscribe to our newsletter and get the latest episodes, resources, and
-            updates delivered straight to your inbox.
-          </p>
-
-          <div className="flex justify-center">
-            <NewsletterForm variant="inline" />
-          </div>
-
-          <p className="text-gray-400 text-xs mt-4">
-            We respect your privacy. Unsubscribe at any time.
-          </p>
-        </motion.div>
-      </div>
-    </section>
+        <p className="mt-4 text-sm text-white/45">
+          We respect your privacy. Unsubscribe at any time.
+        </p>
+      </Container>
+    </Section>
   );
 }
