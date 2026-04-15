@@ -1,4 +1,4 @@
-import { ArrowRight, Award, BookOpen, Globe, Heart, Mic, Users, Stethoscope } from 'lucide-react';
+import { ArrowRight, Award, Globe, Heart, Mic, Stethoscope } from 'lucide-react';
 import { Link } from 'react-router';
 import pastorDeola from '../assets/pastordeola.webp';
 import Button from '../components/ui/Button';
