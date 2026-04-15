@@ -5,7 +5,7 @@ const proofItems = [
   { value: '13+', label: 'episodes released' },
   { value: '70K+', label: 'views and growing' },
   { value: 'Global', label: 'listeners in community' },
-  { value: 'Weekly', label: 'conversations that endure' },
+  { value: 'Regular', label: 'discussions that endure' },
 ];
 
 export default function ProofStrip() {

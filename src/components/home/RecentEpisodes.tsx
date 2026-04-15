@@ -17,8 +17,8 @@ export default function RecentEpisodes() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionIntro
             eyebrow="Episode shelf"
-            title="Recent conversations worth catching up on."
-            copy="An editorial grid for latest releases, spotlight episodes, and shareable conversations from the archive."
+            title="Recent Episodes Worth Catching up On."
+            copy="Here are some of the previous episodes from The Higher Life Podcast with Pastor Deola Phillips."
           />
 
           <Link to="/episodes">
@@ -29,14 +29,14 @@ export default function RecentEpisodes() {
           </Link>
         </div>
 
-        <div className="mt-12 space-y-6">
+        <div className="mt-12 space-y-16">
           {featureShelf.map((episode, index) => (
             <Link to={`/episodes?play=${episode.videoId}`} key={episode.id}>
               <EpisodeCard episode={episode} index={index} variant="featured" />
             </Link>
           ))}
 
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="pt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {recentEps.map((episode, index) => (
               <Link to={`/episodes?play=${episode.videoId}`} key={episode.id}>
                 <EpisodeCard episode={episode} index={index} variant="standard" />

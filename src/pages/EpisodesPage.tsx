@@ -51,8 +51,12 @@ export default function EpisodesPage() {
     <main id="episodes-page">
       <PageHero
         eyebrow="Episode library"
-        title="A cleaner archive for discovering, replaying, and sharing the message."
-        copy="The archive now carries the same editorial hierarchy as the homepage, with a featured player, improved filters, and a premium card system for every episode."
+        title={
+        <>
+         All Episodes of The <span className="text-gold-500">Higher Life Podcast</span> with Pastor Deola Phillips.
+        </>
+      }
+        copy="Browse the archive of previous episodes of the Higher Life Podcast including messages and sermons from Pastor Deola Phillips."
       />
 
       <Section tone="paper" spacing="default">
@@ -125,7 +129,7 @@ export default function EpisodesPage() {
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.8fr)] lg:items-end">
             <SectionIntro
               eyebrow="Browse the library"
-              title="Search and filter without losing the premium feel."
+              title="An array of faith-lifting episodes."
               copy={`${episodes.length} episodes of faith, growth, family, and purpose.`}
             />
 

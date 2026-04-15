@@ -18,8 +18,7 @@ export default function AskCTASection() {
                 Bring real questions from real life into the next conversation.
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
-                Invite the audience into the show by submitting questions about faith,
-                purpose, family, or spiritual growth.
+                Do you have questions about faith, family, purpose, or spiritual growth? Send it in and get answers by the Spirit of God through Pastor Deola Phillips.
               </p>
             </div>
 

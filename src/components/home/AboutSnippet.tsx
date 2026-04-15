@@ -7,9 +7,10 @@ import SectionIntro from '../ui/SectionIntro';
 import Button from '../ui/Button';
 
 const hostPoints = [
-  'Practical biblical teaching rooted in spiritual maturity',
-  'Warm, intelligible guidance for faith, family, and purpose',
-  'A voice shaped for both the church audience and global listeners',
+  'Zonal Pastor of Christ Embassy Lagos Zone 5',
+  'Executive Minister, Ministry of Healing, Loveworld Kingdom',
+  'Host of The Higher Life Podcast — reaching thousands globally',
+  'Executive Minister, Ministry of Ministerial Development',
 ];
 
 export default function AboutSnippet() {
@@ -31,8 +32,8 @@ export default function AboutSnippet() {
           <div>
             <SectionIntro
               eyebrow="Meet the host"
-              title="Pastor Deola Phillips brings clarity, warmth, and conviction to every conversation."
-              copy="The site now treats her story like an editorial profile rather than a generic bio block, giving the ministry a stronger sense of credibility and presence."
+              title="Pastor Deola Phillips — a dynamic minister of God's Word with clarity and direction."
+              copy="A seasoned leader, medical doctor turned minister, and passionate voice for the Gospel, Pastor Deola Phillips serves as the Zonal Pastor of Christ Embassy Lagos Zone 5 and leads thousands across the globe through The Higher Life Podcast."
             />
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">

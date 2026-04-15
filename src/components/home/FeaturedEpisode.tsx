@@ -23,7 +23,7 @@ export default function FeaturedEpisode() {
         <SectionIntro
           eyebrow="Latest episode"
           title="Now playing"
-          copy="A spotlight conversation with stronger hierarchy, cleaner pacing, and enough room for the message to breathe."
+          copy="Catch the latest episode in The Higher Life Podcast with Pastor Deola Phillips."
         />
 
         <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.85fr)] lg:items-start">

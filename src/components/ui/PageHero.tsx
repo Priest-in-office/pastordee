@@ -5,11 +5,10 @@ import Section from './Section';
 
 interface PageHeroProps {
   eyebrow?: string;
-  title: string;
+  title: ReactNode;
   copy: string;
   actions?: ReactNode;
   media?: ReactNode;
-  meta?: ReactNode;
 }
 
 export default function PageHero({
@@ -18,7 +17,6 @@ export default function PageHero({
   copy,
   actions,
   media,
-  meta,
 }: PageHeroProps) {
   return (
     <Section tone="dark" spacing="hero" className="site-grain overflow-hidden">
@@ -45,7 +43,6 @@ export default function PageHero({
             {actions && (
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">{actions}</div>
             )}
-            {meta && <div className="mt-10">{meta}</div>}
           </motion.div>
 
           {media && (

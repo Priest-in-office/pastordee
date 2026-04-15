@@ -11,8 +11,7 @@ export default function NewsletterSection() {
           Get new episodes, notes, and updates delivered with intention.
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/70 sm:text-lg">
-          A premium newsletter treatment with better spacing, clearer hierarchy, and a
-          calmer call to action.
+          Sign up to get weekly updates on new episodes, messages, and events from Pastor Deola Phillips right in your inbox.
         </p>
 
         <div className="mt-10 flex justify-center">

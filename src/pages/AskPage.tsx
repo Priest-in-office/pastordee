@@ -31,7 +31,7 @@ const processSteps = [
   {
     step: '03',
     title: 'Selected questions are featured',
-    desc: 'Your submission may help shape an upcoming conversation on the podcast.',
+    desc: 'Your submission and contribution may help shape an upcoming conversation on the podcast.',
   },
 ];
 
@@ -111,8 +111,12 @@ export default function AskPage() {
     <main id="ask-page">
       <PageHero
         eyebrow="Listener questions"
-        title="Make the podcast feel like a living conversation with the audience."
-        copy="This page now frames question submission as part of the show experience, with calmer hierarchy, premium form styling, and clearer expectations."
+        title={
+        <>
+         Pastor Deola Phillips answers your <span className="text-gold-500">questions!</span>
+        </>
+      }
+        copy="From faith and family to purpose and leadership, Pastor Deola Phillips addresses the questions that matter most to you."
       />
 
       <Section tone="paper" spacing="default">
@@ -121,8 +125,8 @@ export default function AskPage() {
             <div>
               <SectionIntro
                 eyebrow="How it works"
-                title="Thoughtful submissions make for better episodes."
-                copy="The supporting content now sits beside the form instead of below it, which makes the page feel more editorial and less generic."
+                title="Your questions, answered."
+                copy="Your questions help shape the conversation on the Higher Life Podcast. Submit your questions below and Pastor Deola Phillips will answer them in upcoming episodes."
               />
 
               <div className="mt-8 space-y-4">

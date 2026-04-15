@@ -43,8 +43,12 @@ export default function EventsPage() {
     <main id="events-page">
       <PageHero
         eyebrow="Events"
-        title="Bring the audience beyond the screen and into real gatherings."
-        copy="This page now presents events with stronger hierarchy, calmer spacing, and cards that feel consistent with the new editorial site system."
+        title={
+        <>
+         Join us for upcoming events with <span className="text-gold-500">Pastor Deola Phillips.</span>
+        </>
+      }
+        copy="Explore a schedule of conferences, services, and special gatherings where Pastor Deola shares powerful messages of faith, healing, and purpose."
       />
 
       <Section tone="paper" spacing="default">
@@ -52,7 +56,7 @@ export default function EventsPage() {
           <SectionIntro
             eyebrow="Upcoming"
             title="Opportunities to listen, gather, and grow in person."
-            copy="The redesigned event shelf uses a cleaner premium card treatment with stronger metadata and action placement."
+            copy="Join Pastor Deola Phillips live and in person at any of these meetings for a time of refreshing, inspiration, and spiritual growth."
           />
 
           <div className="mt-12 space-y-6">
