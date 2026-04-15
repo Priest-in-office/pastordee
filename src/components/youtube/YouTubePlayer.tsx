@@ -53,7 +53,7 @@ export default function YouTubePlayer({
         loading="lazy"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/20 to-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(210,180,118,0.2),transparent_40%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(64,224,208,0.2),transparent_40%)]" />
 
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="yt-play-btn flex h-18 w-18 items-center justify-center rounded-full bg-gold-500 text-ink-950 md:h-22 md:w-22">

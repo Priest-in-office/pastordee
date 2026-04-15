@@ -111,7 +111,7 @@ export default function AboutPage() {
               Rising through the ranks of Christ Embassy (LoveWorld Inc.), she took on pioneering roles across the ministry. From launching the LoveWorld Television Ministry to directing the Healing School, the International School of Ministry, the Trauma Care International Foundation, the Volunteer Medical Corps, and the Future Africa Leaders Foundation — her leadership has been both expansive and transformative.
             </p>
             <p>
-              Today, as the Zonal Pastor of Christ Embassy Lagos Zone 5 and a trusted associate of the ministry's founder, Rev. Dr. Chris Oyakhilome, Pastor Deola continues to impact lives through her dynamic preaching, her administrative excellence, and initiatives like The Higher Life Podcast.
+              Today, as the Zonal Pastor of Christ Embassy Lagos Zone 5, Pastor Deola continues to impact lives through her dynamic preaching, her administrative excellence, and initiatives like The Higher Life Podcast.
             </p>
           </div>
         </Container>

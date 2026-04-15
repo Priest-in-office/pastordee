@@ -33,7 +33,7 @@ export default function HeroSection() {
       media={
         <div className="relative mx-auto max-w-[30rem]">
           <div className="absolute -right-8 top-10 hidden h-32 w-32 rounded-full border border-white/12 lg:block" />
-          <div className="absolute -left-10 bottom-12 hidden h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(210,180,118,0.38),transparent_70%)] lg:block" />
+          <div className="absolute -left-10 bottom-12 hidden h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(64,224,208,0.38),transparent_70%)] lg:block" />
           <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-ink-900 shadow-[var(--shadow-card)]">
             <div className="border-b border-white/8 px-6 py-4">
               <span className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-gold-300">

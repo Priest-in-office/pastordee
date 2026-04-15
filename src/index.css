@@ -13,11 +13,11 @@
   --color-sand-100: #f2ecdf;
   --color-sand-200: #e5dbc7;
   --color-sand-300: #d8c5a2;
-  --color-gold-300: #dbc08d;
-  --color-gold-400: #d2b476;
-  --color-gold-500: #c39d5b;
-  --color-gold-600: #a88445;
-  --color-gold-700: #866837;
+  --color-gold-300: #80ede6;
+  --color-gold-400: #5fe6dd;
+  --color-gold-500: #40e0d0;
+  --color-gold-600: #2ab8aa;
+  --color-gold-700: #1a8a80;
   --color-sage-400: #90a489;
   --color-sage-500: #77896f;
   --color-white: #ffffff;
@@ -52,7 +52,7 @@
     font-family: var(--font-sans);
     color: var(--color-ink-700);
     background:
-      radial-gradient(circle at top, rgba(210, 180, 118, 0.12), transparent 24rem),
+      radial-gradient(circle at top, rgba(64, 224, 208, 0.10), transparent 24rem),
       var(--site-bg);
     line-height: 1.6;
     overflow-x: hidden;
@@ -95,7 +95,7 @@
 }
 
 ::selection {
-  background: rgba(195, 157, 91, 0.28);
+  background: rgba(64, 224, 208, 0.28);
   color: var(--color-ink-950);
 }
 
@@ -158,11 +158,11 @@
 
 .yt-play-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 0 10px rgba(195, 157, 91, 0.08);
+  box-shadow: 0 0 0 10px rgba(64, 224, 208, 0.12);
 }
 
 :focus-visible {
-  outline: 2px solid rgba(195, 157, 91, 0.8);
+  outline: 2px solid rgba(64, 224, 208, 0.8);
   outline-offset: 3px;
 }
 

@@ -21,7 +21,7 @@ export default function PageHero({
   return (
     <Section tone="dark" spacing="hero" className="site-grain overflow-hidden">
       <Container size="wide" className="relative">
-        <div className="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,rgba(210,180,118,0.25),transparent_65%)]" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,rgba(64,224,208,0.25),transparent_65%)]" />
         <div
           className={`relative grid gap-12 lg:gap-16 ${
             media

@@ -11,7 +11,7 @@ export default function AskCTASection() {
       <Container size="wide">
         <SurfaceCard tone="dark" padding="lg" className="site-grain overflow-hidden">
           <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
-            <div className="absolute right-0 top-0 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(210,180,118,0.32),transparent_70%)]" />
+            <div className="absolute right-0 top-0 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(64,224,208,0.32),transparent_70%)]" />
             <div className="relative">
               <span className="eyebrow">Ask Pastor Deola</span>
               <h2 className="mt-4 max-w-2xl text-4xl text-white sm:text-5xl">
