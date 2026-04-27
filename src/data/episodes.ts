@@ -140,7 +140,7 @@ export const events: Event[] = [
     id: 'event-1',
     title: 'Sunday Worship Service',
     description: 'Join us for an uplifting Sunday worship experience with powerful praise, worship, and the Word of God.',
-    date: '2026-04-20',
+    date: '2026-04-19',
     time: '9:00 AM WAT',
     location: 'Christ Embassy Lekki, Lagos',
     type: 'service',
